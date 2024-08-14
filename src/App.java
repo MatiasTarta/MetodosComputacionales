@@ -58,6 +58,7 @@ public class App {
     }
 
     public static float trapecio(float[][] matriz,float n, float h){
+        //este esta correcto
         float suma=0,resultado=0;
           for(int i=1;i<n-1;i++){
             suma= matriz[1][i]+suma;
@@ -68,6 +69,7 @@ public class App {
     }
 
     public static float simpson13(float[][] matriz,float n, float h){
+        //metodo raro, no se si da esto. revisar
         float sumaPar=0,sumaImpar=0,resultado=0;
           for(int i=1;i<n-1;i++){
             if(i%2==0){
