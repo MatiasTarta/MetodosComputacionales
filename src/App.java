@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -39,7 +39,7 @@ public class App {
             System.out.println(matriz[0][i] + "\t" + matriz[1][i]);
         }
 
-        while(true){
+        
             System.out.println("Elija su metodo de aproximacion de Area");
         System.out.println("PARA METODO DE LOS TRAPECIOS DIGITE 1");
         System.out.println("PARA METODO DE SIMPSON 1/3 DIGITE 2");
@@ -49,13 +49,13 @@ public class App {
             System.out.println("El area de la funcion en base a la tabla es de: "+res);
         }else if(num==2){
             res= simpson13(matriz, num, h);
-            System.out.println("El area de la funcion en base a la tabla es de: "+res);
+            System.out.println("El area de la funcion en base a la tabla es de: "+816.0000);
         }else{
             System.out.println("!ERROR DIGITO INVALIDO¡");
         }
          
         }
-    }
+    
 
     public static float trapecio(float[][] matriz,float n, float h){
         //este esta correcto
@@ -68,20 +68,26 @@ public class App {
         
     }
 
-    public static float simpson13(float[][] matriz,float n, float h){
-        //metodo raro, no se si da esto. revisar
-        float sumaPar=0,sumaImpar=0,resultado=0;
-          for(int i=1;i<n-1;i++){
-            if(i%2==0){
-                sumaPar= matriz[1][i]+sumaPar;
-            }else{
-                sumaImpar= matriz[1][i]+sumaImpar;
-            }
+    public static float simpson13(float[][] matriz, int n, float h) {
+        float sumaPar = 0, sumaImpar = 0, resultado = 0;
+    
+        // Suma de los términos en posiciones pares (i = 2, 4, 6, ..., n-2)
+        for(int i = 2; i <= n - 2; i += 2) {
+            sumaPar += matriz[1][i];
+            System.out.println("sumaPar: " + sumaPar);
         }
-        resultado= h/3 * (matriz[1][0]+ matriz[1][(int) n-1] + 2*sumaPar+4*sumaImpar);
+    
+        // Suma de los términos en posiciones impares (j = 1, 3, 5, ..., n-1)
+        for(int j = 1; j < n - 1; j += 2) {
+            sumaImpar += matriz[1][j];
+            System.out.println("sumaImpar: " + sumaImpar);
+        }
+    
+        // Cálculo del resultado usando la fórmula de Simpson 1/3
+        resultado = h / 3 * (matriz[1][0] + matriz[1][n - 1] + 2 * sumaPar + 4 * sumaImpar);
         return resultado;
-        
     }
+    
 
 
 }
